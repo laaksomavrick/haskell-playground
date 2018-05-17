@@ -35,3 +35,26 @@ sum' (x:xs) = x + sum' xs
 first_letter :: String -> String
 first_letter "" = "Empty string, oops!"
 first_letter all@(x:xs) = "First of " ++ all ++ " is " ++ [x]
+
+fib_guards :: (Integral a) => a -> a
+fib_guards n
+  | n == 0    = 0
+  | n == 1    = 1
+  | otherwise = fib_guards(n - 1) + fib_guards(n - 2)
+
+compare' :: (Ord a) => a -> a -> Ordering
+a `compare'` b
+  | a > b     = GT
+  | a == b    = EQ
+  | otherwise = LT
+
+bmi :: (RealFloat a) => a -> a -> String
+bmi weight height
+  | bmi <= skinny = "Skinny"
+  | bmi <= normal = "Normal"
+  | bmi <= overweight = "Overweight"
+  | otherwise = "Unknown"
+  where bmi        = weight / height ^ 2
+        skinny     = 18.5
+        normal     = 25.0
+        overweight = 30.0
